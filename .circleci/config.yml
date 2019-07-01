@@ -56,7 +56,7 @@ jobs:
             
       - run:
           name: Build Docker Image
-          command: docker build --no-cache -t $DOCKER_USERNAME/spring-boot-maven:$(cat tempvers.txt) .
+          command: docker build --no-cache -t $DOCKER_USERNAME/spring-boot-maven .
           
       - run:
           name: Push Image to DockerHub
