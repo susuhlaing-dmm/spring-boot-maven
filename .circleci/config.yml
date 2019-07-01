@@ -52,12 +52,12 @@ jobs:
       - run:
           name: Echo
           command: |
-            echo $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt)
+            echo $DOCKER_USERNAME/spring-boot-maven:$(cat tempvers.txt)
             
       - run:
           name: Build Docker Image
-          command: docker build --no-cache -t $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt) .
+          command: docker build --no-cache -t $DOCKER_USERNAME/spring-boot-maven:$(cat tempvers.txt) .
           
       - run:
           name: Push Image to DockerHub
-          command: docker push $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt)
+          command: docker push $DOCKER_USERNAME/spring-boot-maven:$(cat tempvers.txt)
