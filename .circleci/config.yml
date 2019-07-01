@@ -46,18 +46,18 @@ jobs:
           command: |
             echo "testing!!!"
             cp target/*.jar docker/app/
-            echo $DOCKER_USERNAME $DOCKER_PASSWORD
-            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            echo $DOCKER_USERNAME
+            docker login -u $DOCKER_USERNAME --password-stdin $DOCKER_PASSWORD
           
       - run:
           name: Echo
           command: |
-            echo $DOCKER_USERNAME/spring-boot-maven:$(cat tempvers.txt)
+            echo $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt)
             
       - run:
           name: Build Docker Image
-          command: docker build --no-cache -t $DOCKER_USERNAME/spring-boot-maven .
+          command: docker build --no-cache -t $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt) .
           
       - run:
           name: Push Image to DockerHub
-          command: docker push $DOCKER_USERNAME/spring-boot-maven:$(cat tempvers.txt)
+          command: docker push $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt)
