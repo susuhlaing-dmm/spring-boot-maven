@@ -30,9 +30,8 @@ jobs:
           path: target/spring-boot-maven-1.0.0-SNAPSHOT.jar
               
       - run:
-          name: Echo
+          name: Echo 1
           command: |
-            echo $(mvn -q -Dexec.executable=\"echo\" -Dexec.args='${project.version}' --non-recursive exec:exec)
             echo $CIRCLE_SHA1 | cut -c -7
             echo $CIRCLE_BUILD_NUM
             
@@ -51,8 +50,13 @@ jobs:
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
           
       - run:
+          name: Echo
+          command: |
+            echo $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt)
+            
+      - run:
           name: Build Docker Image
-          command: docker build --no-cache -t $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt) docker .
+          command: docker build --no-cache -t $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt) .
           
       - run:
           name: Push Image to DockerHub
