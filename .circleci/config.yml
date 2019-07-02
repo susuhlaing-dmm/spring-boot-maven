@@ -77,4 +77,5 @@ jobs:
             git config user.name "susuhlaing-dmm"
             git add target/*.jar.
             git commit --allow-empty -m "pushing jar file"
-            git push -q https://${DOCS_GITHUB_TOKEN}@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git master
+            git remote add origin https://${DOCS_GITHUB_TOKEN}@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
+            git push -u origin master
