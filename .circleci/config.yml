@@ -30,34 +30,34 @@ jobs:
           path: target/spring-boot-maven-1.0.0-SNAPSHOT.jar
               
       - run:
-          name: Echo 1
+          name: Echo circleci value
           command: |
             echo $CIRCLE_SHA1 | cut -c -7
             echo $CIRCLE_BUILD_NUM
             
+     
       - run: 
-          name: Remove SNAPSHOT and execute image version number
-          command: "if mvn -q -Dexec.executable=\"echo\" -Dexec.args='${project.version}' --non-recursive exec:exec | grep -q \"SNAPSHOT\"; then mvn versions:set -DremoveSnapshot; fi;\n\
-              echo $(mvn -q -Dexec.executable=\"echo\" -Dexec.args='${project.version}' --non-recursive exec:exec)-$(echo $CIRCLE_SHA1 | cut -c -7)-$CIRCLE_BUILD_NUM > tempvers.txt\n\
-              mvn versions:set -DnewVersion=$(cat tempvers.txt) \n"
+          name: testing
+          command: |
+              -$(echo $CIRCLE_SHA1 | cut -c -7)-$CIRCLE_BUILD_NUM > tempvers.txt
                       
       - run:
           name: Login to DockerHub
           command: |
             echo "testing!!!"
             cp target/*.jar docker/app/
-            echo $DOCKER_USERNAME
+            echo $DOCKER_USERNAME $DOCKER_PASSWORD
             docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
           
       - run:
-          name: Echo
+          name: Echo docker path
           command: |
-            echo $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1 | cut -c -7-$CIRCLE_BUILD_NUM
+            echo $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt) 
             
       - run:
           name: Build Docker Image
-          command: docker build --no-cache -t $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1 | cut -c -7-$CIRCLE_BUILD_NUM .
+          command: docker build --no-cache -t $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt) .
           
       - run:
           name: Push Image to DockerHub
-          command: docker push $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1 | cut -c -7-$CIRCLE_BUILD_NUM
+          command: docker push $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt)
