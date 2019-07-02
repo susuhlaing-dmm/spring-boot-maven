@@ -66,13 +66,13 @@ jobs:
       - deploy:
           name: Trigger docs deployment
           working_directory: ~/spring-boot-maven-jarrepo
-          command: |
-            git config credential.helper 'cache --timeout=120'
-            git config user.email "susu.hlaing@wavemoney.com.mm"
-            git config user.name "susuhlaing-dmm"
+          command: | 
             git init
             ls -al
             git status
+            git config credential.helper 'cache --timeout=120'
+            git config user.email "susu.hlaing@wavemoney.com.mm"
+            git config user.name "susuhlaing-dmm"           
             git add -f .
             git commit -m "pushing jar file"
             git remote add origin https://github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
