@@ -66,9 +66,9 @@ jobs:
       - run:
           name: Push Jar to GitHub
           command: |
-            git clone --depth 1 https://github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
+            git clone --depth 1 https://729c4679a2a1fe454cccbc500470772fd8206260@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
             git config user.email "susu.hlaing@wavemoney.com.mm"
             git config user.name "susuhlaing-dmm"
             git add target/*.jar
             git commit --allow-empty -m "pushing jar file"
-            git push -q https://github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git master
+            git push -q https://729c4679a2a1fe454cccbc500470772fd8206260@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git master
