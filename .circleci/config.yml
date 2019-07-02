@@ -64,11 +64,17 @@ jobs:
           command: docker push $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt)
           
       - run:
-          name: Push Jar to GitHub
+          name: Clone docs
+          working_directory: ~/workdir
           command: |
-            git clone --depth 1 https://729c4679a2a1fe454cccbc500470772fd8206260@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
+            git clone --depth 1 https://${DOCS_GITHUB_TOKEN}@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
+      - deploy:
+          name: Push Jar to GitHub
+          working_directory: ~/workdir/docs
+          command: |
+            git config credential.helper 'cache --timeout=120'
             git config user.email "susu.hlaing@wavemoney.com.mm"
             git config user.name "susuhlaing-dmm"
             git add target/*.jar
             git commit --allow-empty -m "pushing jar file"
-            git push -q https://729c4679a2a1fe454cccbc500470772fd8206260@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git master
+            git push -q https://${DOCS_GITHUB_TOKEN}@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git master
