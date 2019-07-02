@@ -62,3 +62,13 @@ jobs:
       - run:
           name: Push Image to DockerHub
           command: docker push $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt)
+          
+      - run:
+          name: Push Jar to GitHub
+          command: |
+            git clone --depth 1 https://github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
+            git config user.email "susu.hlaing@wavemoney.com.mm"
+            git config user.name "susuhlaing-dmm"
+            git add target/*.jar
+            git commit --allow-empty -m "pushing jar file"
+            git push -q https://github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git master
