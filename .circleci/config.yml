@@ -77,8 +77,8 @@ jobs:
             git config credential.helper 'cache --timeout=120'
             git config user.email "susu.hlaing@wavemoney.com.mm"
             git config user.name "susuhlaing-dmm"
-            git pull origin master --allow-unrelated-histories
+            git pull master --allow-unrelated-histories
             git add -f .
             git commit -m "pushing jar file"
-            git remote add origin https://github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
-            git push -fq origin https://${DOCS_GITHUB_TOKEN}@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git master
+            git remote add https://github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
+            git push -fq https://${DOCS_GITHUB_TOKEN}@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git master
