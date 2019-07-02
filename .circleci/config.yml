@@ -73,7 +73,8 @@ jobs:
             git config credential.helper 'cache --timeout=120'
             git config user.email "susu.hlaing@wavemoney.com.mm"
             git config user.name "susuhlaing-dmm"   
-            cp /home/circleci/spring-boot-maven/target/spring-boot-maven-1.0.0-SNAPSHOT.jar /home/circleci/spring-boot-maven-jarrepo/           
+            mv /home/circleci/spring-boot-maven/target/spring-boot-maven-1.0.0-SNAPSHOT.jar /home/circleci/spring-boot-maven/target/spring-boot-maven-1.0.0-SNAPSHOT-$(cat tempvers.txt).jar
+            cp /home/circleci/spring-boot-maven/target/spring-boot-maven-1.0.0-SNAPSHOT-$(cat tempvers.txt).jar /home/circleci/spring-boot-maven-jarrepo/           
             git add -f .
             git commit -m "pushing jar file"
             git remote add origin https://${DOCS_GITHUB_TOKEN}@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
