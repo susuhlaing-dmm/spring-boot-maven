@@ -34,6 +34,7 @@ jobs:
           command: |
             echo $CIRCLE_SHA1 | cut -c -7
             echo $CIRCLE_BUILD_NUM
+            echo $CIRCLE_SHA1 | cut -c -7 - $CIRCLE_BUILD_NUM
             
      
       - run: 
