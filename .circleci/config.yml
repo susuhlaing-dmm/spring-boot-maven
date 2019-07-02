@@ -58,7 +58,7 @@ jobs:
           name: Build Docker Image
           command: |
             docker build --no-cache -t $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt) -f docker/Dockerfile .
-          
+
       - run:
           name: Push Image to DockerHub
           command: docker push $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt)
