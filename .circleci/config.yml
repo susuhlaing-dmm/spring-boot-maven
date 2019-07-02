@@ -71,6 +71,8 @@ jobs:
             git config user.email "susu.hlaing@wavemoney.com.mm"
             git config user.name "susuhlaing-dmm"
             git init
+            ls -al
+            git status
             git add -f .
             git commit -m "pushing jar file"
             git remote add origin https://github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
