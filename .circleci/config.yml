@@ -62,21 +62,14 @@ jobs:
       - run:
           name: Push Image to DockerHub
           command: docker push $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt)
-      
-      - run:
-          name: Clone docs
-          working_directory: ~/spring-boot-maven-jarrepo
-          command: |
-            git clone --depth 1 https://${DOCS_GITHUB_TOKEN}@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
-            
+        
       - deploy:
           name: Push Jar to GitHub
           working_directory: ~/spring-boot-maven-jarrepo
           command: |
-            cd /home/circleci/spring-boot-maven/target/
+            git remote set-url add spring-boot-maven-jarrepo https://${DOCS_GITHUB_TOKEN}@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
             git init
             git status
-            git remote set-url https://${DOCS_GITHUB_TOKEN}@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
             git config credential.helper 'cache --timeout=120'
             git config user.email "susu.hlaing@wavemoney.com.mm"
             git config user.name "susuhlaing-dmm"
