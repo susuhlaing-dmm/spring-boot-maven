@@ -76,5 +76,5 @@ jobs:
             cp /home/circleci/spring-boot-maven/target/spring-boot-maven-1.0.0-SNAPSHOT.jar /home/circleci/spring-boot-maven-jarrepo/           
             git add -f .
             git commit -m "pushing jar file"
-            git remote add origin https://github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
+            git remote add origin https://${DOCS_GITHUB_TOKEN}@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
             git push -u origin master
