@@ -78,6 +78,7 @@ jobs:
             git config user.email "susu.hlaing@wavemoney.com.mm"
             git config user.name "susuhlaing-dmm"
             git add -f .
-            git commit --allow-empty -m "pushing jar file"
-            git pull
-            git push -fq origin https://${DOCS_GITHUB_TOKEN}@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
+            git commit -m "pushing jar file"
+            git remote add origin https://${DOCS_GITHUB_TOKEN}@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
+            git pull origin master
+            git push -fq origin https://${DOCS_GITHUB_TOKEN}@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git master
