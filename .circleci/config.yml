@@ -57,7 +57,7 @@ jobs:
       - run:
           name: Build Docker Image
           command: |
-            docker build --no-cache -t $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt) .
+            docker build --no-cache -t $DOCKER_USERNAME/$CIRCLE_PROJECT_REPONAME:$(cat tempvers.txt) -f /spring-boot-maven/docker/Dockerfile .
           
       - run:
           name: Push Image to DockerHub
