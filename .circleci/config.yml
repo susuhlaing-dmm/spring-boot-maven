@@ -81,5 +81,4 @@ jobs:
             git commit -m "pushing jar file"
             git remote add origin https://${DOCS_GITHUB_TOKEN}@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git
             git pull origin master --allow-unrelated-histories
-            git merge origin origin/master
             git push -fq origin https://${DOCS_GITHUB_TOKEN}@github.com/susuhlaing-dmm/spring-boot-maven-jarrepo.git master
